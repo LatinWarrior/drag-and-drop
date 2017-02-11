@@ -9,53 +9,47 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="panel panel-info">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">{{list.label}}</h3>
-                                    </div>                                    
-                                    <div class="panel-body">
-                                        <!-- The dnd-list directive allows to drop elements into it.
+                                <!-- The dnd-list directive allows to drop elements into it.
                                         The dropped data will be added to the referenced list -->
-                                        <ul dnd-list="list.tools" dnd-allowed-types="list.allowedTypes" dnd-disable-if="list.tools.length >= list.max">
+                                <ul dnd-list="list.tools" dnd-allowed-types="list.allowedTypes" dnd-disable-if="list.tools.length >= list.max">
 
-                                            <li ng-repeat="tool in list.tools" dnd-draggable="tool" dnd-type="tool.type" dnd-disable-if="tool.type == 'unknown'" dnd-moved="list.tools.splice($index, 1); $ctrl.updateModelJson();"
-                                                class="background-{{tool.type}}">
-                                                <dnd-nodrag>
-                                                    <!--<div class="row">
+                                    <li ng-repeat="tool in list.tools" dnd-draggable="tool" dnd-type="tool.type" dnd-disable-if="tool.type == 'unknown'" dnd-moved="list.tools.splice($index, 1); $ctrl.updateModelJson();"
+                                        class="background-{{tool.type}}">
+                                        <dnd-nodrag>
+                                            <!--<div class="row">
                                                         <div class="col-md-2"></div>
                                                         <div class="col-md-6">Name</div>
                                                         <div class="col-md-4">Index</div>
                                                     </div>-->
-                                                    <div class="row">
-                                                        <div class="col-md-2">
-                                                            <div dnd-handle class="handle"><span class="{{tool.icon}}"></span></div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div ng-if="tool.index > -1">
-                                                                <input type="text" ng-model="tool.name" class="background-{{tool.type}} form-control input-sm">
-                                                            </div>  
-                                                            <div ng-if="tool.index < 0">
-                                                                <label  class="background-{{tool.type}} input-sm">{{tool.name}}</label>
-                                                            </div>                                                          
-                                                        </div>
-                                                        <div class="col-md-4" ng-if="tool.index > -1">
-                                                            <span class="badge index">{{tool.index}}</span>                                                            
-                                                        </div>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div dnd-handle class="handle"><span class="{{tool.icon}}"></span></div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div ng-if="tool.index > -1">
+                                                        <input type="text" ng-model="tool.name" class="background-{{tool.type}} form-control input-sm">
                                                     </div>
-                                                    
-                                                    <!--<div class="name">
+                                                    <div ng-if="tool.index < 0">
+                                                        <label class="background-{{tool.type}} input-sm">{{tool.name}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4" ng-if="tool.index > -1">
+                                                    <span class="badge index">{{tool.index}}</span>
+                                                </div>
+                                            </div>
+
+                                            <!--<div class="name">
                                                         
                                                         <span></span>
                                                     </div>-->
-                                                </dnd-nodrag>
-                                                </li>
-                                                <li class="dndPlaceholder">
-                                                    Drop any <strong>{{list.allowedTypes.join(' or ')}}</strong> here
-                                                </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                        </dnd-nodrag>
+                                        </li>
+                                        <li class="dndPlaceholder">
+                                            Drop any <strong>{{list.allowedTypes.join(' or ')}}</strong> here
+                                        </li>
+                                </ul>
                             </div>
+                            <!-- Delete me -->
                         </div>
                     </div>
                 </div>
@@ -74,6 +68,4 @@
             </div>
         </div>
     </div>
-</div>
-
 </div>
