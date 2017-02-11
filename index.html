@@ -6,6 +6,7 @@
   <title>
   </title>
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="/src/css/app.css">
   <link rel="stylesheet" href="/src/css/simple.css">
   <link rel="stylesheet" href="/src/css/nested.css">
   <link rel="stylesheet" href="/src/css/types.css">
@@ -14,9 +15,11 @@
 
 <body>
 
-  <a ui-sref="simple" ui-sref-active="active">Simple</a>
+  <!--<a ui-sref="simple" ui-sref-active="active">Simple</a>
   <a ui-sref="nested" ui-sref-active="active">Nested</a>
-  <a ui-sref="types" ui-sref-active="active">Types</a>
+  <a ui-sref="types" ui-sref-active="active">Types</a>-->
+  <div ng-include="'src/app/layout/topnav.html'"></div>
+
   <div ui-view></div>
 
   <script src="node_modules/jquery/dist/jquery.js"></script>
