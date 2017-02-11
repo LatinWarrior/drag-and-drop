@@ -13,25 +13,12 @@ function controller() {
 
   var $ctrl = this;
 
-  console.log('Hello from simple controller.');
-
-    // $ctrl.models = {
-    //     selected: null,
-    //     lists: {"A": [], "B": []}
-    // };
-
-    // // Generate initial model
-    // for (var i = 1; i <= 3; ++i) {
-    //     $ctrl.models.lists.A.push({label: "Item A" + i});
-    //     $ctrl.models.lists.B.push({label: "Item B" + i});
-    // }
-
     $ctrl.models = {};
     $ctrl.modelAsJson = {};
 
     $ctrl.$onInit = function () {
 
-      console.log('in $onInit of simple controller');
+      // console.log('in $onInit of simple controller');
 
       $ctrl.models = {
           selected: null,
@@ -46,13 +33,19 @@ function controller() {
 
       $ctrl.modelAsJson = angular.toJson($ctrl.models, true);
 
-      console.log('in $onInit of simple controller. models: ', $ctrl.models);
+      // console.log('in $onInit of simple controller. models: ', $ctrl.models);
     };
 
     // Model to JSON for demo purpose
     $ctrl.$onChanges = function(changes) {
-        console.log('in $onChanges of simple controller. changes.models: ', changes.models);
-        if (changes.models){
+
+        // if (changes.models.isFirstChange()) {
+        //     console.log('in $onChanges of simple controller. changes.models: ', changes.models);
+        //     return;
+        // }
+
+        if (changes.models &&
+            !changes.models.isFirstChange()) {
           $ctrl.models = changes.models;
           $ctrl.modelAsJson = angular.toJson($ctrl.models, true);
       }

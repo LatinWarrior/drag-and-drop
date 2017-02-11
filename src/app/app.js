@@ -1,5 +1,5 @@
 angular
-.module('app', ['ui.router'])
+.module('app', ['ui.router', 'dndLists'])
 .config(function($stateProvider, $urlRouterProvider){
 
   $urlRouterProvider.otherwise('/simple');
