@@ -18,8 +18,16 @@ angular
     template: '<nested></nested>'
   }
 
+  var typesState = {
+    name: 'types',
+    url: '/types',
+    template: '<types></types>',
+    component: 'types'
+  }
+
   // templateUrl: '/src/app/nested/nested.html',
 
   $stateProvider.state(simpleState);
   $stateProvider.state(nestedState);
+  $stateProvider.state(typesState);
 });

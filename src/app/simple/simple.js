@@ -32,13 +32,17 @@ function controller() {
 
       // Generate initial model
       for (var i = 1; i <= 3; ++i) {
-          $ctrl.models.lists.A.push({label: "Item A" + i});
-          $ctrl.models.lists.B.push({label: "Item B" + i});
+          $ctrl.models.lists.A.push({label: "Item A" + i, type: 'hammer'});
+          $ctrl.models.lists.B.push({label: "Item B" + i, type: 'nail'});
       }
 
       $ctrl.modelAsJson = angular.toJson($ctrl.models, true);
 
       // console.log('in $onInit of simple controller. models: ', $ctrl.models);
+    };
+
+    $ctrl.$doCheck = function() {
+      //console.log('in $doCheck of simple component.');
     };
 
     // Model to JSON for demo purpose

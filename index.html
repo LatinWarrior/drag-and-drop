@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html ng-app="app">
-  <head>
-    <meta charset="utf-8">
-    <title>
-    </title>
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="/src/css/simple.css">
-    <link rel="stylesheet" href="/src/css/nested.css">
-    <style>.active { color: red; font-weight: bolder; }</style>
-  </head>
-  <body>
 
-    <a ui-sref="simple" ui-sref-active="active">Simple</a>
-    <a ui-sref="nested" ui-sref-active="active">Nested</a>
-    <div ui-view></div>
+<head>
+  <meta charset="utf-8">
+  <title>
+  </title>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="/src/css/simple.css">
+  <link rel="stylesheet" href="/src/css/nested.css">
+  <link rel="stylesheet" href="/src/css/types.css">
+  <style>.active { color: red; font-weight: bolder; }</style>
+</head>
 
-    <script src="node_modules/jquery/dist/jquery.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="node_modules/angular/angular.js"></script>
-    <script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="node_modules/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js"></script>
-    <script src="node_modules/angular-bootstrap/ui-bootstrap.js"></script>
-    <script src="src/app/app.js"></script>
-    <script src="src/app/simple/simple.js"></script>
-    <script src="src/app/nested/nested.js"></script>
-  </body>
+<body>
+
+  <a ui-sref="simple" ui-sref-active="active">Simple</a>
+  <a ui-sref="nested" ui-sref-active="active">Nested</a>
+  <a ui-sref="types" ui-sref-active="active">Types</a>
+  <div ui-view></div>
+
+  <script src="node_modules/jquery/dist/jquery.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="node_modules/angular/angular.js"></script>
+  <script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="node_modules/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js"></script>
+  <script src="node_modules/angular-bootstrap/ui-bootstrap.js"></script>
+  <script src="src/app/app.js"></script>
+  <script src="src/app/simple/simple.js"></script>
+  <script src="src/app/nested/nested.js"></script>
+  <script src="src/app/types/types.js"></script>
+</body>
+
 </html>
