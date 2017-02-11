@@ -94,9 +94,14 @@
 .typesDemo .handle {
   cursor: move;
   position: absolute;
-  top: 1rem;
+  top: 0.5rem;
 }
 
 .typesDemo .name {
   margin-left: 0.01rem;
+}
+
+.typesDemo .index {
+  top: 0.5rem;
+  background-color: mediumvioletred;
 }

@@ -31,10 +31,15 @@
                                                             <div dnd-handle class="handle"><span class="{{tool.icon}}"></span></div>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <input type="text" ng-model="tool.name" class="background-{{tool.type}} form-control input-sm">
+                                                            <div ng-if="tool.index > -1">
+                                                                <input type="text" ng-model="tool.name" class="background-{{tool.type}} form-control input-sm">
+                                                            </div>  
+                                                            <div ng-if="tool.index < 0">
+                                                                <label  class="background-{{tool.type}} input-sm">{{tool.name}}</label>
+                                                            </div>                                                          
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            {{tool.index}}
+                                                        <div class="col-md-4" ng-if="tool.index > -1">
+                                                            <span class="badge index">{{tool.index}}</span>                                                            
                                                         </div>
                                                     </div>
                                                     
