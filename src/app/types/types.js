@@ -32,9 +32,9 @@ function controller() {
                     allowedTypes: ['hammer'],
                     max: 4,
                     tools: [
-                        { name: "Hammer 3", type: "hammer", index: 0 },
-                        { name: "Hammer 4", type: "hammer", index: 1 },
-                        { name: "Hammer 5", type: "hammer", index: 2 }
+                        { name: "Hammer 3", type: "hammer", index: 0, icon: "fa fa-fax" },
+                        { name: "Hammer 4", type: "hammer", index: 1, icon: "fa fa-fax" },
+                        { name: "Hammer 5", type: "hammer", index: 2, icon: "fa fa-fax" }
                     ]
                 },
                 {
@@ -43,9 +43,9 @@ function controller() {
                     allowedTypes: ['nail'],
                     max: 4,
                     tools: [
-                        { name: "Nail 3", type: "nail", index: 0 },
-                        { name: "Nail 4", type: "nail", index: 1 },
-                        { name: "Nail 5", type: "nail", index: 2 }
+                        { name: "Nail 3", type: "nail", index: 0, icon: "fa fa-taxi" },
+                        { name: "Nail 4", type: "nail", index: 1, icon: "fa fa-taxi" },
+                        { name: "Nail 5", type: "nail", index: 2, icon: "fa fa-taxi" }
                     ]
                 },
                 {
@@ -54,9 +54,9 @@ function controller() {
                     allowedTypes: [],
                     max: 6,
                     tools: [                        
-                        { name: "Hammer", type: "hammer", index: -1 },
-                        { name: "Hose", type: "hose", index: -1 },
-                        { name: "Nail", type: "nail", index: -1 }                        
+                        { name: "Hammer", type: "hammer", index: -1, icon: "fa fa-fax" },
+                        { name: "Hose", type: "hose", index: -1, icon: "fa fa-building-o" },
+                        { name: "Nail", type: "nail", index: -1, icon: "fa fa-taxi" }                        
                     ]
                 }
             ];        
