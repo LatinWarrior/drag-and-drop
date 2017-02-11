@@ -16,6 +16,11 @@ function controller() {
     $ctrl.models = {};
     $ctrl.modelAsJson = {};
 
+    $ctrl.updateModel = function() {
+        // console.log('In $ctrl.updateModel. $ctrl.models: ', $ctrl.models);
+        $ctrl.modelAsJson = angular.toJson($ctrl.models, true);
+    }
+
     $ctrl.$onInit = function () {
 
       // console.log('in $onInit of simple controller');
@@ -39,6 +44,7 @@ function controller() {
     // Model to JSON for demo purpose
     $ctrl.$onChanges = function(changes) {
 
+      console.log('in $onChanges of simple controller. changes.models: ', changes.models);
         // if (changes.models.isFirstChange()) {
         //     console.log('in $onChanges of simple controller. changes.models: ', changes.models);
         //     return;

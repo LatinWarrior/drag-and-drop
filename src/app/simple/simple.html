@@ -1,7 +1,7 @@
 <div class="simpleDemo row">
 <div class="col-md-8">
     <div class="row">
-        <div ng-repeat="(listName, list) in $ctrl.models.lists">
+        <div ng-repeat="(listName, list) in $ctrl.models.lists" >
           <div class="col-md-6">
             <div class="panel panel-info">
                 <div class="panel-heading">
@@ -18,7 +18,7 @@
                            yourself using the dnd-moved attribute -->
                       <li ng-repeat="item in list"
                           dnd-draggable="item"
-                          dnd-moved="list.splice($index, 1)"
+                          dnd-moved="list.splice($index, 1); $ctrl.updateModel();"
                           dnd-effect-allowed="move"
                           dnd-selected="$ctrl.models.selected = item"
                           ng-class="{'selected': $ctrl.models.selected === item}">
