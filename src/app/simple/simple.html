@@ -18,7 +18,7 @@
                            yourself using the dnd-moved attribute -->
                       <li ng-repeat="item in list"
                           dnd-draggable="item"
-                          dnd-moved="list.splice($index, 1); $ctrl.updateModel();"
+                          dnd-moved="list.splice($index, 1); $ctrl.updateModelJson();"
                           dnd-effect-allowed="move"
                           dnd-selected="$ctrl.models.selected = item"
                           ng-class="{'selected': $ctrl.models.selected === item}">

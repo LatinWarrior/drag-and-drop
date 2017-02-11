@@ -16,7 +16,7 @@ function controller() {
     $ctrl.models = {};
     $ctrl.modelAsJson = {};
 
-    $ctrl.updateModel = function() {
+    $ctrl.updateModelJson = function() {
         // console.log('In $ctrl.updateModel. $ctrl.models: ', $ctrl.models);
         $ctrl.modelAsJson = angular.toJson($ctrl.models, true);
     }
@@ -44,7 +44,7 @@ function controller() {
     // Model to JSON for demo purpose
     $ctrl.$onChanges = function(changes) {
 
-      console.log('in $onChanges of simple controller. changes.models: ', changes.models);
+      console.log('in $onChanges of simple component. changes.models: ', changes.models);
         // if (changes.models.isFirstChange()) {
         //     console.log('in $onChanges of simple controller. changes.models: ', changes.models);
         //     return;
