@@ -1,7 +1,8 @@
 <div class="simpleDemo row">
 <div class="col-md-8">
     <div class="row">
-        <div ng-repeat="(listName, list) in $ctrl.models.lists" class="col-md-6">
+        <div ng-repeat="(listName, list) in $ctrl.models.lists">
+          <div class="col-md-6">
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h3 class="panel-title">List {{listName}}</h3>
@@ -20,18 +21,15 @@
                           dnd-moved="list.splice($index, 1)"
                           dnd-effect-allowed="move"
                           dnd-selected="$ctrl.models.selected = item"
-                          ng-class="{'selected': $ctrl.models.selected === item}"
-                          >
+                          ng-class="{'selected': $ctrl.models.selected === item}">
                           {{item.label}}
                       </li>
                   </ul>
                 </div>
             </div>
+            </div>
         </div>
     </div>
-
-    <div view-source="simple"></div>
-
 </div>
 
 <div class="col-md-4">
