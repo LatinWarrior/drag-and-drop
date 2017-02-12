@@ -16,8 +16,17 @@ function controller() {
     $ctrl.lists = {};
     $ctrl.modelAsJson = {};
 
-    $ctrl.updateModelJson = function () {
+    $ctrl.updateModelJson = function (list, $index) {
+        console.log('list: ', list);
+        console.log('$index', $index);
+        //if (list.tools.label !== 'Palette') { console.log('list.tools.label: ', list.tools.label); list.tools.splice($index, 1); };         
         // console.log('In $ctrl.updateModel. $ctrl.models: ', $ctrl.models);
+        if (list.label !== 'Palette') {
+            list.tools.splice($index, 1);
+            // console.log('list.tools.index before: ', list.tools.index);
+            // list.tools.index = $index + 1;
+            // console.log('list.tools.index after: ', list.tools.index);
+        }
         $ctrl.modelAsJson = angular.toJson($ctrl.lists, true);
     }
 
@@ -28,35 +37,38 @@ function controller() {
         $ctrl.lists = [
                 {
                     selected: null,
-                    label: "Hammers",
-                    allowedTypes: ['hammer'],
-                    max: 4,
+                    label: "Left",
+                    allowedTypes: ['phone', 'car'],
+                    effectAllowed: "move",
+                    max: 7,
                     tools: [
-                        { name: "Hammer 3", type: "hammer", index: 0, icon: "fa fa-fax" },
-                        { name: "Hammer 4", type: "hammer", index: 1, icon: "fa fa-fax" },
-                        { name: "Hammer 5", type: "hammer", index: 2, icon: "fa fa-fax" }
+                        { name: "P-003", type: "phone", index: 0, icon: "fa fa-fax" },
+                        { name: "P-004", type: "phone", index: 1, icon: "fa fa-fax" },
+                        { name: "P-005", type: "phone", index: 2, icon: "fa fa-fax" }
                     ]
                 },
                 {
                     selected: null,
-                    label: "Nails",
-                    allowedTypes: ['nail'],
-                    max: 4,
+                    label: "Right",
+                    allowedTypes: ['phone', 'car'],
+                    effectAllowed: "move",
+                    max: 5,
                     tools: [
-                        { name: "Nail 3", type: "nail", index: 0, icon: "fa fa-taxi" },
-                        { name: "Nail 4", type: "nail", index: 1, icon: "fa fa-taxi" },
-                        { name: "Nail 5", type: "nail", index: 2, icon: "fa fa-taxi" }
+                        { name: "C-003", type: "car", index: 0, icon: "fa fa-taxi" },
+                        { name: "C-004", type: "car", index: 1, icon: "fa fa-taxi" },
+                        { name: "C-005", type: "car", index: 2, icon: "fa fa-taxi" }
                     ]
                 },
                 {
                     selected: null,
-                    label: "Tools",
+                    label: "Palette",
                     allowedTypes: [],
-                    max: 6,
+                    effectAllowed: "copy",
+                    max: -1,
                     tools: [                        
-                        { name: "Hammer", type: "hammer", index: -1, icon: "fa fa-fax" },
-                        { name: "Hose", type: "hose", index: -1, icon: "fa fa-building-o" },
-                        { name: "Nail", type: "nail", index: -1, icon: "fa fa-taxi" }                        
+                        { name: "Phone", type: "phone", index: -1, icon: "fa fa-fax" },
+                        { name: "iPad", type: "ipad", index: -1, icon: "fa fa-building-o" },
+                        { name: "Car", type: "car", index: -1, icon: "fa fa-taxi" }                        
                     ]
                 }
             ];        
@@ -84,6 +96,35 @@ function controller() {
             $ctrl.models = changes.lists;
             $ctrl.modelAsJson = angular.toJson($ctrl.lists, true);
         }
+    };
+
+    $ctrl.dragoverCallback = function(index, external, type, callback) {
+        $ctrl.logListEvent('dragged over', index, external, type);
+        // Invoke callback to origin for container types.
+        if (type == 'container' && !external) {
+            console.log('Container being dragged contains ' + callback() + ' items');
+        }
+        return index < 10; // Disallow dropping in the third row.
+    };
+
+    $ctrl.dropCallback = function(index, item, external, type) {
+        $ctrl.logListEvent('In dropCallback. Dropped at ', index, external, type);       
+        if (item.index < 0){
+            item.name = type + '-00' + index;
+        }
+        item.index = index;
+        // Return false here to cancel drop. Return true if you insert the item yourself.
+        return item;
+    };
+
+    $ctrl.logEvent = function(message) {
+        console.log(message);
+    };
+
+    $ctrl.logListEvent = function(action, index, external, type) {
+        var message = external ? 'External ' : '';
+        message += type + ' element was ' + action + ' position ' + index;
+        console.log(message);
     };
 
 }

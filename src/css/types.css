@@ -52,6 +52,7 @@
   border-top-left-radius: 0px;
   display: block;
   margin-bottom: -1px;
+  width: 15rem;
 
   /* Disable text selection if item is not draggable */
   -webkit-touch-callout: none;
@@ -64,7 +65,10 @@
 
 .typesDemo ul[dnd-list] li dnd-nodrag {
   display: block;
-  padding: 0.5rem 1.0rem;
+  padding: 0.5rem 0.5rem;
+  background-color: #337ab7;
+  color: #FFF;
+  width: 15.0rem;
 }
 
 /**
@@ -95,6 +99,7 @@
   cursor: move;
   position: absolute;
   top: 0.5rem;
+  left: 2.0rem;
 }
 
 .typesDemo .name {
@@ -103,5 +108,19 @@
 
 .typesDemo .index {
   top: 0.5rem;
-  background-color: mediumvioletred;
+  background-color: #000;
+}
+
+.typesDemo .dropzone .itemlist > li {
+    background-color: #337ab7;
+    border: none;
+    border-radius: .0;
+    color: #fff;
+    float: left;
+    font-weight: 4rem;
+    height: 20px;
+    margin: 3px;
+    padding: 2px;
+    text-align: center;
+    width: 60px;
 }

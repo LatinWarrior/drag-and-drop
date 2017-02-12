@@ -4,25 +4,37 @@
             <div ng-repeat="list in $ctrl.lists" class="col-md-4">
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{{list.label}} (max. {{list.max}})</h3>
+                        <h3 class="panel-title">
+                            <div ng-if="list.max > - 1">
+                                {{list.label}} (max. {{list.max}})
+                            </div>
+                            <div ng-if="list.max < 0">
+                                {{list.label}}
+                            </div>
+                        </h3>
                     </div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12">
                                 <!-- The dnd-list directive allows to drop elements into it.
                                         The dropped data will be added to the referenced list -->
-                                <ul dnd-list="list.tools" dnd-allowed-types="list.allowedTypes" dnd-disable-if="list.tools.length >= list.max">
+                                <ul dnd-list="list.tools" 
+                                dnd-allowed-types="list.allowedTypes" 
+                                dnd-disable-if="list.tools.length >= list.max"
+                                dnd-drop="$ctrl.dropCallback(index, item, external, type)"
+                                    dnd-inserted="$ctrl.logListEvent('inserted at', index, external, type)"
+                                class="itemlist">
 
-                                    <li ng-repeat="tool in list.tools" dnd-draggable="tool" dnd-type="tool.type" dnd-disable-if="tool.type == 'unknown'" dnd-moved="list.tools.splice($index, 1); $ctrl.updateModelJson();"
-                                        class="background-{{tool.type}}">
-                                        <dnd-nodrag>
-                                            <!--<div class="row">
-                                                        <div class="col-md-2"></div>
-                                                        <div class="col-md-6">Name</div>
-                                                        <div class="col-md-4">Index</div>
-                                                    </div>-->
+                                    <li ng-repeat="tool in list.tools" 
+                                    dnd-draggable="tool" 
+                                    dnd-type="tool.type" 
+                                    dnd-disable-if="tool.type == 'unknown'" 
+                                    dnd-effect-allowed="{{tool.effectAllowed}}"                                    
+                                    dnd-moved="$ctrl.updateModelJson(list, $index);"
+                                        class="itemlist">
+                                        <dnd-nodrag>                                            
                                             <div class="row">
-                                                <div class="col-md-2">
+                                                <div class="col-md-1">
                                                     <div dnd-handle class="handle"><span class="{{tool.icon}}"></span></div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -33,15 +45,10 @@
                                                         <label class="background-{{tool.type}} input-sm">{{tool.name}}</label>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4" ng-if="tool.index > -1">
+                                                <div class="col-md-1" ng-if="tool.index > -1">
                                                     <span class="badge index">{{tool.index}}</span>
-                                                </div>
+                                                </div>                                                
                                             </div>
-
-                                            <!--<div class="name">
-                                                        
-                                                        <span></span>
-                                                    </div>-->
                                         </dnd-nodrag>
                                         </li>
                                         <li class="dndPlaceholder">
