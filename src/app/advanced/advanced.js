@@ -58,4 +58,29 @@ function controller() {
         }
     };
 
+    $ctrl.dragoverCallback = function(index, external, type, callback) {
+        $ctrl.logListEvent('dragged over', index, external, type);
+        // Invoke callback to origin for container types.
+        if (type == 'container' && !external) {
+            console.log('Container being dragged contains ' + callback() + ' items');
+        }
+        return index < 10; // Disallow dropping in the third row.
+    };
+
+    $ctrl.dropCallback = function(index, item, external, type) {
+        $ctrl.logListEvent('dropped at', index, external, type);
+        // Return false here to cancel drop. Return true if you insert the item yourself.
+        return item;
+    };
+
+    $ctrl.logEvent = function(message) {
+        console.log(message);
+    };
+
+    $ctrl.logListEvent = function(action, index, external, type) {
+        var message = external ? 'External ' : '';
+        message += type + ' element was ' + action + ' position ' + index;
+        console.log(message);
+    };
+
 }
