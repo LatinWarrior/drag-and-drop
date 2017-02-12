@@ -18,14 +18,14 @@
                             <div class="col-md-12">
                                 <!-- The dnd-list directive allows to drop elements into it.
                                         The dropped data will be added to the referenced list -->
-                                <ul dnd-list="list.tools" 
+                                <ul dnd-list="list.items" 
                                 dnd-allowed-types="list.allowedTypes" 
-                                dnd-disable-if="list.tools.length >= list.max"
+                                dnd-disable-if="list.items.length >= list.max"
                                 dnd-drop="$ctrl.dropCallback(list, index, item, external, type)"
                                 dnd-inserted="$ctrl.onInserted('inserted at', list, index, external, type)"
                                 class="itemlist">
 
-                                    <li ng-repeat="tool in list.tools" 
+                                    <li ng-repeat="tool in list.items" 
                                     dnd-draggable="tool" 
                                     dnd-type="tool.type" 
                                     dnd-disable-if="tool.type == 'unknown'" 

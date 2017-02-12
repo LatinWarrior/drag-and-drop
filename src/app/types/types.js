@@ -19,13 +19,13 @@ function controller() {
     $ctrl.updateModelJson = function (list, $index) {
         console.log('list: ', list);
         console.log('$index', $index);
-        //if (list.tools.label !== 'Palette') { console.log('list.tools.label: ', list.tools.label); list.tools.splice($index, 1); };         
+        //if (list.items.label !== 'Palette') { console.log('list.items.label: ', list.items.label); list.items.splice($index, 1); };         
         // console.log('In $ctrl.updateModel. $ctrl.models: ', $ctrl.models);
         if (list.label !== 'Palette') {
-            list.tools.splice($index, 1);
-            // console.log('list.tools.index before: ', list.tools.index);
-            // list.tools.index = $index + 1;
-            // console.log('list.tools.index after: ', list.tools.index);
+            list.items.splice($index, 1);
+            // console.log('list.items.index before: ', list.items.index);
+            // list.items.index = $index + 1;
+            // console.log('list.items.index after: ', list.items.index);
         }        
 
         $ctrl.modelAsJson = angular.toJson($ctrl.lists, true);
@@ -43,7 +43,7 @@ function controller() {
                     allowedTypes: ['phone', 'car'],
                     effectAllowed: "move",
                     max: 7,
-                    tools: [
+                    items: [
                         { name: "P-003", type: "phone", index: 0, icon: "fa fa-fax" },
                         { name: "P-004", type: "phone", index: 1, icon: "fa fa-fax" },
                         { name: "P-005", type: "phone", index: 2, icon: "fa fa-fax" }
@@ -56,7 +56,7 @@ function controller() {
                     allowedTypes: ['phone', 'car'],
                     effectAllowed: "move",
                     max: 10,
-                    tools: [
+                    items: [
                         { name: "P-006", type: "phone", index: 0, icon: "fa fa-fax" },
                         { name: "P-007", type: "phone", index: 1, icon: "fa fa-fax" },
                         { name: "P-008", type: "phone", index: 2, icon: "fa fa-fax" },
@@ -70,7 +70,7 @@ function controller() {
                     allowedTypes: ['phone', 'car'],
                     effectAllowed: "move",
                     max: 3,
-                    tools: [                       
+                    items: [                       
                         { name: "C-007", type: "car", index: 0, icon: "fa fa-taxi" }
                     ]
                 },
@@ -81,7 +81,7 @@ function controller() {
                     allowedTypes: ['phone', 'car'],
                     effectAllowed: "move",
                     max: 5,
-                    tools: [
+                    items: [
                         { name: "C-003", type: "car", index: 0, icon: "fa fa-taxi" },
                         { name: "C-004", type: "car", index: 1, icon: "fa fa-taxi" },
                         { name: "C-005", type: "car", index: 2, icon: "fa fa-taxi" }
@@ -94,7 +94,7 @@ function controller() {
                     allowedTypes: [],
                     effectAllowed: "copy",
                     max: -1,
-                    tools: [                        
+                    items: [                        
                         { name: "Phone", type: "phone", index: -1, icon: "fa fa-fax" },
                         { name: "iPad", type: "ipad", index: -1, icon: "fa fa-building-o" },
                         { name: "Car", type: "car", index: -1, icon: "fa fa-taxi" }                        
@@ -155,7 +155,7 @@ function controller() {
     $ctrl.onInserted = function(action, list, index, external, type) {
         // debugger;
         var newIndex = 0;
-        angular.forEach(list.tools, (item) => {
+        angular.forEach(list.items, (item) => {
             item.index = newIndex;
             newIndex++;
         });
