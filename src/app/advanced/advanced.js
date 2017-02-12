@@ -15,11 +15,20 @@ function controller() {
     $ctrl.model = [];
     $ctrl.modelAsJson = {};
 
-    $ctrl.$onInit = function () {       
+    $ctrl.$onInit = function () {
 
         // Generate initial model
         var id = 10;
-        $ctrl.model = [[], [], [], [], []];
+        // $ctrl.model = [
+        //     [{ name: "L-USQ", index: 0 }],
+        //     [{ name: "L-SQ", index: 1  }],
+        //     [{ name: "R-SQ", index: 2  }],
+        //     [{ name: "R-USQ", index: 3  }],
+        //     [{ name: 'PALETTE', index: -1  }]
+        // ];
+
+        $ctrl.model = [[],[],[],[],[]];
+
         // angular.forEach(['all', 'move', 'copy', 'link', 'copyLink', 'copyMove'], function (effect, i) {
         //     var container = { items: [], effectAllowed: effect };
         //     for (var k = 0; k < 23; ++k) {
@@ -35,35 +44,43 @@ function controller() {
         //     }
         //     $ctrl.model[index % $ctrl.model.length].push(container);
         // });
-
-        var container1 = { items: [], effectAllowed: 'move', id: 1, name: 'L-USQ', source: false };
-        $ctrl.model[0].push(container1);
-        var container2 = { items: [], effectAllowed: 'move', id: 2, name: 'L-SQ', source: false };
-         $ctrl.model[1].push(container2);
-        var container3 = { items: [], effectAllowed: 'move', id: 3, name: 'R-SQ', source: false };
-         $ctrl.model[2].push(container3);
-        var container4 = { items: [], effectAllowed: 'move', id: 4, name: 'R-USQ', source: false };
-         $ctrl.model[3].push(container4);
-        var itemPhone = { id: 1, name: 'phone', label: 'phone', type: 'phone', index: -1, icon: 'fa fa-phone' };
-        var itemCar = { id: 2, name: 'car', label: 'car', type: 'car', index: -1, icon: 'fa fa-car' };
-        var container5 = { items: [itemPhone, itemCar], effectAllowed: 'copy', id: 0, name: 'PALETTE', source: true };
-         $ctrl.model[4].push(container5);
+        //debugger;
+        //var container1 = { items: [], effectAllowed: 'move', id: 1, name: '', source: false , index: 0};
+        for(var i = 0; i < 10; i++) {
+            $ctrl.model[0].push({ items: [], effectAllowed: 'move', id: i, name: i + 1, source: false , index: i});
+            $ctrl.model[1].push({ items: [], effectAllowed: 'move', id: i, name: i + 1, source: false , index: i});
+            $ctrl.model[2].push({ items: [], effectAllowed: 'move', id: i, name: i + 1, source: false , index: i});
+            $ctrl.model[3].push({ items: [], effectAllowed: 'move', id: i, name: i + 1, source: false , index: i});
+        }
+        //var container12 = { items: [], effectAllowed: 'move', id: 12, name: '', source: false , index: 0};
+        // $ctrl.model[0].push(container1);
+        // $ctrl.model[0].push(container12);
+        // var container2 = { items: [], effectAllowed: 'move', id: 2, name: '', source: false, index: 1 };
+        // $ctrl.model[1].push(container2);
+        // var container3 = { items: [], effectAllowed: 'move', id: 3, name: '', source: false, index: 2 };
+        // $ctrl.model[2].push(container3);
+        // var container4 = { items: [], effectAllowed: 'move', id: 4, name: '', source: false, index: 3 };
+        // $ctrl.model[3].push(container4);
+        var itemPhone = { id: 1, name: 'phone', label: 'phone', type: 'phone', index: -1, icon: 'fa fa-phone', effectAllowed: 'copy' };
+        var itemCar = { id: 2, name: 'car', label: 'car', type: 'car', index: -1, icon: 'fa fa-car', effectAllowed: 'copy' };
+        var container5 = { items: [itemPhone, itemCar], effectAllowed: 'copy', id: 0, name: 'PALETTE', source: true, index: -1 };
+        $ctrl.model[4].push(container5);        
 
         $ctrl.modelAsJson = angular.toJson($ctrl.model, true);
 
         // console.log('in $onInit of simple controller. models: ', $ctrl.models);
     };
 
-    $ctrl.onMoved = function (container, item, $index) {        
+    $ctrl.onMoved = function (container, item, $index) {
         //debugger;
         if (!container.source) {
-            container.items.splice($index, 1);            
-        }        
+            container.items.splice($index, 1);
+        }
 
         //$ctrl.modelAsJson = angular.toJson($ctrl.lists, true);
     }
 
-    $ctrl.onInserted = function(action, list, index, external, type) {
+    $ctrl.onInserted = function (action, list, index, external, type) {
         // debugger;
         var newIndex = 0;
         angular.forEach(list.items, (item) => {
@@ -71,7 +88,7 @@ function controller() {
             newIndex++;
         });
 
-        $ctrl.logListEvent('In onInserted. Inserted at ', list, index, external, type);  
+        $ctrl.logListEvent('In onInserted. Inserted at ', list, index, external, type);
     };
 
 
@@ -87,7 +104,7 @@ function controller() {
     // Model to JSON for demo purpose
     $ctrl.$onChanges = function (changes) {
 
-        console.log('in $onChanges of simple component. changes.models: ', changes.model);        
+        console.log('in $onChanges of simple component. changes.models: ', changes.model);
 
         if (changes.model &&
             !changes.model.isFirstChange()) {
@@ -96,26 +113,26 @@ function controller() {
         }
     };
 
-    $ctrl.dragoverCallback = function(index, external, type, callback) {
+    $ctrl.dragoverCallback = function (index, external, type, callback) {
         $ctrl.logListEvent('dragged over', index, external, type);
         // Invoke callback to origin for container types.
         if (type == 'container' && !external) {
             console.log('Container being dragged contains ' + callback() + ' items');
         }
-        return index < 10; // Disallow dropping in the third row.
+        return index < 2; // Disallow dropping more than 3 items.
     };
 
-    $ctrl.dropCallback = function(index, item, external, type) {
+    $ctrl.dropCallback = function (index, item, external, type) {
         $ctrl.logListEvent('dropped at', index, external, type);
         // Return false here to cancel drop. Return true if you insert the item yourself.
         return item;
     };
 
-    $ctrl.logEvent = function(message) {
+    $ctrl.logEvent = function (message) {
         console.log(message);
     };
 
-    $ctrl.logListEvent = function(action, index, external, type) {
+    $ctrl.logListEvent = function (action, index, external, type) {
         var message = external ? 'External ' : '';
         message += type + ' element was ' + action + ' position ' + index;
         console.log(message);

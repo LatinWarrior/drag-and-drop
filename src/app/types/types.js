@@ -141,7 +141,7 @@ function controller() {
         // debugger;
         $ctrl.logListEvent('In dropCallback. Dropped at ', list, index, external, type);       
         if (item.index < 0){
-            item.name = type + '-00';
+            item.name = type.substring(0, 1).toUpperCase() + '-000';
         }        
         //item.index = index;
         // Return false here to cancel drop. Return true if you insert the item yourself.

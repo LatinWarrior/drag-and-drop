@@ -4,7 +4,7 @@
             <div ng-repeat="containers in $ctrl.model"  
                 class="col-md-2">
                 <div class="dropzone box box-yellow" >
-                    <h3>Container {{$index + 1}}</h3>
+                    <h3>{{$ctrl.model[$index][0].name}}</h3>
                     <ul dnd-list="containers" 
                         dnd-allowed-types="['container']" 
                         dnd-external-sources="true" 
