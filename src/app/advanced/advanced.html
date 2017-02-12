@@ -25,7 +25,7 @@
                                     dnd-effect-allowed="{{container.effectAllowed}}"
                                     dnd-dragover="$ctrl.dragoverCallback(index, external, type)"
                                     dnd-drop="$ctrl.dropCallback(index, item, external, type)"
-                                    dnd-inserted="$ctrl.logListEvent('inserted at', index, external, type)" 
+                                    dnd-inserted="$ctrl.onInserted('inserted at', container, item, index, external, type)" 
                                     class="itemlist">
                                     <li ng-repeat="item in container.items" 
                                         dnd-draggable="item" 
@@ -34,7 +34,9 @@
                                         dnd-dragstart="$ctrl.logEvent('Started to drag an item')" 
                                         dnd-moved="$ctrl.onMoved(container, item, $index)"
                                         dnd-dragend="$ctrl.logEvent('Drag operation ended. Drop effect: ' + dropEffect)">
-                                        <span class="{{item.icon}}"></span>
+                                        <span class="{{item.icon}}">
+                                            <span class="badge badge-custom" ng-if="item.index > -1">{{item.index}}</span>
+                                            </span>
                                     </li>
                                 </ul>
                                 <div class="clearfix"></div>

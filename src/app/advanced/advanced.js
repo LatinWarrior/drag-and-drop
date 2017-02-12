@@ -55,13 +55,25 @@ function controller() {
     };
 
     $ctrl.onMoved = function (container, item, $index) {        
-        debugger;
+        //debugger;
         if (!container.source) {
             container.items.splice($index, 1);            
         }        
 
         //$ctrl.modelAsJson = angular.toJson($ctrl.lists, true);
     }
+
+    $ctrl.onInserted = function(action, list, index, external, type) {
+        // debugger;
+        var newIndex = 0;
+        angular.forEach(list.items, (item) => {
+            item.index = newIndex;
+            newIndex++;
+        });
+
+        $ctrl.logListEvent('In onInserted. Inserted at ', list, index, external, type);  
+    };
+
 
     $ctrl.updateModelJson = function () {
         // console.log('In $ctrl.updateModel. $ctrl.models: ', $ctrl.models);

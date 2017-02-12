@@ -54,13 +54,24 @@
     color: #fff;
     float: left;
     font-weight: 700;
-    height: 5rem;
-    margin: 5px;
-    padding: 3px;
+    height: 4rem;
+    margin: 2px;
+    padding: 1rem;
     text-align: center;
     width: 4rem;
 }
 
 .advancedDemo .dropzone .container-element {
     margin: 10px;
+}
+
+.badge-custom {
+    font-size: 0.75rem;
+    vertical-align: top;
+    padding: 0.25rem;
+    text-align: center;
+    background-color: #000;
+    /*position: relative;    
+    margin-top: -0.25rem;
+    margin-rightS: -6.25rem;*/
 }
