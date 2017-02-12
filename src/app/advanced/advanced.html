@@ -2,9 +2,9 @@
     <div class="col-md-12">        
         <div class="row">
             <div ng-repeat="containers in $ctrl.model"  
-                class="col-md-6">
+                class="col-md-2">
                 <div class="dropzone box box-yellow" >
-                    <h3>Dropzone {{$index + 1}}</h3>
+                    <h3>Container {{$index + 1}}</h3>
                     <ul dnd-list="containers" 
                         dnd-allowed-types="['container']" 
                         dnd-external-sources="true" 
@@ -17,11 +17,11 @@
                                 dnd-moved="containers.splice($index, 1)"
                                 dnd-callback="container.items.length">
                             <div class="container-element box box-blue">
-                                <h3>Container (effects allowed: {{container.effectAllowed}})</h3>
+                                <h3>{{container.name}}</h3>
                                 <ul dnd-list="container.items" 
                                     dnd-allowed-types="['item']" 
-                                    dnd-horizontal-list="true" 
-                                    dnd-external-sources="true" 
+                                    dnd-horizontal-list="false" 
+                                    dnd-external-sources="false" 
                                     dnd-effect-allowed="{{container.effectAllowed}}"
                                     dnd-dragover="$ctrl.dragoverCallback(index, external, type)"
                                     dnd-drop="$ctrl.dropCallback(index, item, external, type)"
@@ -32,9 +32,9 @@
                                         dnd-type="'item'" 
                                         dnd-effect-allowed="{{item.effectAllowed}}"
                                         dnd-dragstart="$ctrl.logEvent('Started to drag an item')" 
-                                        dnd-moved="container.items.splice($index, 1)"
+                                        dnd-moved="$ctrl.onMoved(container, item, $index)"
                                         dnd-dragend="$ctrl.logEvent('Drag operation ended. Drop effect: ' + dropEffect)">
-                                        {{item.label}}
+                                        <span class="{{item.icon}}"></span>
                                     </li>
                                 </ul>
                                 <div class="clearfix"></div>
