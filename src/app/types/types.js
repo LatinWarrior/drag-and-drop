@@ -16,7 +16,7 @@ function controller() {
     $ctrl.lists = {};
     $ctrl.modelAsJson = {};
 
-    $ctrl.updateModelJson = function (list, $index) {
+    $ctrl.onMoved = function (list, $index) {
         console.log('list: ', list);
         console.log('$index', $index);
         //if (list.items.label !== 'Palette') { console.log('list.items.label: ', list.items.label); list.items.splice($index, 1); };         

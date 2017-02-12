@@ -11,14 +11,12 @@
   <link rel="stylesheet" href="/src/css/simple.css">
   <link rel="stylesheet" href="/src/css/nested.css">
   <link rel="stylesheet" href="/src/css/types.css">
+  <link rel="stylesheet" href="/src/css/advanced.css">
   <style>.active { color: red; font-weight: bolder; }</style>
 </head>
 
 <body>
 
-  <!--<a ui-sref="simple" ui-sref-active="active">Simple</a>
-  <a ui-sref="nested" ui-sref-active="active">Nested</a>
-  <a ui-sref="types" ui-sref-active="active">Types</a>-->
   <div ng-include="'src/app/layout/topnav.html'"></div>
 
   <div ui-view></div>
@@ -33,6 +31,7 @@
   <script src="src/app/simple/simple.js"></script>
   <script src="src/app/nested/nested.js"></script>
   <script src="src/app/types/types.js"></script>
+  <script src="src/app/advanced/advanced.js"></script>
 </body>
 
 </html>

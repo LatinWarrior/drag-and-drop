@@ -24,13 +24,12 @@
                                 dnd-drop="$ctrl.dropCallback(list, index, item, external, type)"
                                 dnd-inserted="$ctrl.onInserted('inserted at', list, index, external, type)"
                                 class="itemlist">
-
                                     <li ng-repeat="tool in list.items" 
                                     dnd-draggable="tool" 
                                     dnd-type="tool.type" 
                                     dnd-disable-if="tool.type == 'unknown'" 
                                     dnd-effect-allowed="{{tool.effectAllowed}}"                                    
-                                    dnd-moved="$ctrl.updateModelJson(list, $index);"
+                                    dnd-moved="$ctrl.onMoved(list, $index);"
                                         class="itemlist">
                                         <dnd-nodrag>                                            
                                             <div class="row">
@@ -55,8 +54,7 @@
                                             Drop any <strong>{{list.allowedTypes.join(' or ')}}</strong> here
                                         </li>
                                 </ul>
-                            </div>
-                            <!-- Delete me -->
+                            </div>                            
                         </div>
                     </div>
                 </div>

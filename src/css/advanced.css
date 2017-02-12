@@ -50,15 +50,15 @@
 .advancedDemo .dropzone .itemlist > li {
     background-color: #337ab7;
     border: none;
-    border-radius: .25em;
+    border-radius: 0;
     color: #fff;
     float: left;
     font-weight: 700;
-    height: 50px;
+    height: 5rem;
     margin: 5px;
     padding: 3px;
     text-align: center;
-    width: 80px;
+    width: 4rem;
 }
 
 .advancedDemo .dropzone .container-element {

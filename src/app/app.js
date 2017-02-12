@@ -25,9 +25,17 @@ angular
     component: 'types'
   }
 
+  var advancedState = {
+    name: 'advanced',
+    url: '/advanced',
+    template: '<advanced></advanced>',
+    component: 'advanced'
+  }
+
   // templateUrl: '/src/app/nested/nested.html',
 
   $stateProvider.state(simpleState);
   $stateProvider.state(nestedState);
   $stateProvider.state(typesState);
+  $stateProvider.state(advancedState);
 });
