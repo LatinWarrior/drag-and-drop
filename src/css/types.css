@@ -74,22 +74,24 @@
 /**
  * Gender-specifc background
  */
-.typesDemo ul[dnd-list] li.background-hammer {
+.typesDemo ul[dnd-list] li.background-phone {
   background-color: #FFE0FC;
 }
 
-.typesDemo ul[dnd-list] li.background-nail {
-  background-color: #FFE2F5;
+.typesDemo ul[dnd-list] li.background-car {
+  background-color: #FFE0FC;
 }
 
-.typesDemo ul[dnd-list] input.background-hammer {
+.typesDemo ul[dnd-list] input.background-phone {
   background-color: #D8E9FF;
   color: #2F4D99;
+  width: 7.5rem;
 }
 
-.typesDemo ul[dnd-list] input.background-nail {
-  background-color: #FFF0FA;
-  color: #D84FA7;
+.typesDemo ul[dnd-list] input.background-car {
+  background-color: #D8E9FF;
+  color: #2F4D99;
+  width: 7.5rem;
 }
 
 /**
@@ -107,7 +109,7 @@
 }
 
 .typesDemo .index {
-  top: 0.5rem;
+  margin-top: 0.6rem;
   background-color: #000;
 }
 
