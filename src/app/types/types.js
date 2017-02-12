@@ -37,7 +37,7 @@ function controller() {
         $ctrl.lists = [
                 {
                     selected: null,
-                    label: "Left",
+                    label: "L-USQ",
                     allowedTypes: ['phone', 'car'],
                     effectAllowed: "move",
                     max: 7,
@@ -49,7 +49,30 @@ function controller() {
                 },
                 {
                     selected: null,
-                    label: "Right",
+                    label: "L-SQ",
+                    allowedTypes: ['phone', 'car'],
+                    effectAllowed: "move",
+                    max: 10,
+                    tools: [
+                        { name: "P-006", type: "phone", index: 0, icon: "fa fa-fax" },
+                        { name: "P-007", type: "phone", index: 1, icon: "fa fa-fax" },
+                        { name: "P-008", type: "phone", index: 2, icon: "fa fa-fax" },
+                        { name: "C-006", type: "car", index: 3, icon: "fa fa-taxi" }
+                    ]
+                },
+                {
+                    selected: null,
+                    label: "R-SQ",
+                    allowedTypes: ['phone', 'car'],
+                    effectAllowed: "move",
+                    max: 3,
+                    tools: [                       
+                        { name: "C-007", type: "car", index: 0, icon: "fa fa-taxi" }
+                    ]
+                },
+                {
+                    selected: null,
+                    label: "R-USQ",
                     allowedTypes: ['phone', 'car'],
                     effectAllowed: "move",
                     max: 5,

@@ -52,7 +52,7 @@
   border-top-left-radius: 0px;
   display: block;
   margin-bottom: -1px;
-  width: 15rem;
+  width: 14rem;
 
   /* Disable text selection if item is not draggable */
   -webkit-touch-callout: none;
@@ -68,7 +68,7 @@
   padding: 0.5rem 0.5rem;
   background-color: #337ab7;
   color: #FFF;
-  width: 15.0rem;
+  width: 14.0rem;
 }
 
 /**
@@ -124,3 +124,8 @@
     text-align: center;
     width: 60px;
 }
+
+/*.row {
+  margin-left: -2.75rem;
+  margin-right: 0.01rem;
+}*/
