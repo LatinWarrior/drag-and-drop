@@ -21,8 +21,8 @@
                                 <ul dnd-list="list.tools" 
                                 dnd-allowed-types="list.allowedTypes" 
                                 dnd-disable-if="list.tools.length >= list.max"
-                                dnd-drop="$ctrl.dropCallback(index, item, external, type)"
-                                    dnd-inserted="$ctrl.logListEvent('inserted at', index, external, type)"
+                                dnd-drop="$ctrl.dropCallback(list, index, item, external, type)"
+                                dnd-inserted="$ctrl.onInserted('inserted at', list, index, external, type)"
                                 class="itemlist">
 
                                     <li ng-repeat="tool in list.tools" 

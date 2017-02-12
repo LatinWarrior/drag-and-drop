@@ -5,10 +5,10 @@ angular
             lists: '<'
         },
         templateUrl: '/src/app/types/types.html',
-        controller: controller
+        controller: [controller]
     });
 
-// static controller.$inject = [];
+//controller.['$inject'] = ['ng'];
 function controller() {
 
     var $ctrl = this;
@@ -26,7 +26,8 @@ function controller() {
             // console.log('list.tools.index before: ', list.tools.index);
             // list.tools.index = $index + 1;
             // console.log('list.tools.index after: ', list.tools.index);
-        }
+        }        
+
         $ctrl.modelAsJson = angular.toJson($ctrl.lists, true);
     }
 
@@ -37,6 +38,7 @@ function controller() {
         $ctrl.lists = [
                 {
                     selected: null,
+                    id: 1,
                     label: "L-USQ",
                     allowedTypes: ['phone', 'car'],
                     effectAllowed: "move",
@@ -49,6 +51,7 @@ function controller() {
                 },
                 {
                     selected: null,
+                    id: 2,
                     label: "L-SQ",
                     allowedTypes: ['phone', 'car'],
                     effectAllowed: "move",
@@ -62,6 +65,7 @@ function controller() {
                 },
                 {
                     selected: null,
+                    id: 3,
                     label: "R-SQ",
                     allowedTypes: ['phone', 'car'],
                     effectAllowed: "move",
@@ -72,6 +76,7 @@ function controller() {
                 },
                 {
                     selected: null,
+                    id: 4,
                     label: "R-USQ",
                     allowedTypes: ['phone', 'car'],
                     effectAllowed: "move",
@@ -84,6 +89,7 @@ function controller() {
                 },
                 {
                     selected: null,
+                    id: 0,
                     label: "Palette",
                     allowedTypes: [],
                     effectAllowed: "copy",
@@ -122,7 +128,8 @@ function controller() {
     };
 
     $ctrl.dragoverCallback = function(index, external, type, callback) {
-        $ctrl.logListEvent('dragged over', index, external, type);
+        //debugger;
+        $ctrl.logListEvent('dragged over', null, index, external, type);
         // Invoke callback to origin for container types.
         if (type == 'container' && !external) {
             console.log('Container being dragged contains ' + callback() + ' items');
@@ -130,12 +137,13 @@ function controller() {
         return index < 10; // Disallow dropping in the third row.
     };
 
-    $ctrl.dropCallback = function(index, item, external, type) {
-        $ctrl.logListEvent('In dropCallback. Dropped at ', index, external, type);       
+    $ctrl.dropCallback = function(list, index, item, external, type) {
+        // debugger;
+        $ctrl.logListEvent('In dropCallback. Dropped at ', list, index, external, type);       
         if (item.index < 0){
-            item.name = type + '-00' + index;
-        }
-        item.index = index;
+            item.name = type + '-00';
+        }        
+        //item.index = index;
         // Return false here to cancel drop. Return true if you insert the item yourself.
         return item;
     };
@@ -144,10 +152,21 @@ function controller() {
         console.log(message);
     };
 
-    $ctrl.logListEvent = function(action, index, external, type) {
+    $ctrl.onInserted = function(action, list, index, external, type) {
+        // debugger;
+        var newIndex = 0;
+        angular.forEach(list.tools, (item) => {
+            item.index = newIndex;
+            newIndex++;
+        });
+
+        $ctrl.logListEvent('In onInserted. Inserted at ', list, index, external, type);  
+    };
+
+    $ctrl.logListEvent = function(action, list, index, external, type) {
         var message = external ? 'External ' : '';
         message += type + ' element was ' + action + ' position ' + index;
         console.log(message);
-    };
+    }
 
 }
