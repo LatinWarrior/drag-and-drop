@@ -45,10 +45,52 @@
                     </ul>
                 </div>
             </div>
+            <div class="col-md-2">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="taskSteps">Max. No. of Tasks per Container</label>
+                            </div>
+                            <div class="col-md-6">
+                                <select id="taskSteps" class="form-control" ng-model="$ctrl.taskStep" ng-options="opt for opt in $ctrl.taskOptions.taskStep"></select>
+                            </div>                                                        
+                        </div>
+                        <div class="row">
+                            <!--<div class="col-md-6">
+                                <label for="addRows">Add Rows to Swim Lanes</label>
+                            </div>-->
+                            <div class="col-md-6">
+                                <button id="addRows" class="btn btn-primary" ng-click="$ctrl.addRow()" ng-disabled="!$ctrl.canAddRows">Add Row</button>
+                            </div>           
+                            <div class="col-md-6">
+                                <button id="showModel" class="btn btn-primary" ng-click="$ctrl.toggleModel()">{{$ctrl.showModel ? "Hide" : "Show"}} Model</button>
+                            </div>                                          
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="totalRows">Total Rows</label>
+                            </div>
+                            <div class="col-md-6">
+                                <div>{{$ctrl.totalRows}}</div>                                
+                            </div>                      
+                        </div>  
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="totalRows">Remaining Rows</label>
+                            </div>
+                            <div class="col-md-6">
+                                <div>{{$ctrl.remainingRows}}</div>                                
+                            </div>                      
+                        </div>                       
+                    </div>                    
+                </div>
+                
+            </div>
         </div>
     </div>    
 </div>
-<div class="row">
+<div class="row" ng-if="$ctrl.showModel">
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">

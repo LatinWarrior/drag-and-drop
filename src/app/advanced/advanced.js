@@ -14,10 +14,37 @@ function controller() {
 
     $ctrl.model = [];
     $ctrl.modelAsJson = {};
+    $ctrl.taskStep = 1;
+    $ctrl.defaultRows = 2;
+    $ctrl.taskOptions = {
+        taskStep: [1, 2, 3, 4, 5]
+    }
+    $ctrl.showModel = false;
+    $ctrl.toggleModel = function(){
+        $ctrl.showModel = !$ctrl.showModel;
+    }
+    $ctrl.totalRows = $ctrl.defaultRows;
+    $ctrl.maxRows = 24;
+    $ctrl.remainingRows = $ctrl.maxRows - $ctrl.totalRows;
+    $ctrl.canAddRows = true;
+
+    $ctrl.addRow = function() {
+        console.log('$ctrl.model[0].length: ', $ctrl.model[0].length);
+        var i = $ctrl.model[0].length;
+        $ctrl.model[0].push({ items: [], effectAllowed: 'copyMove', id: i, name: i + 1, source: false , index: i, allowedTypes: ['phone', 'car']});
+        $ctrl.model[1].push({ items: [], effectAllowed: 'copyMove', id: i, name: i + 1, source: false , index: i, allowedTypes: ['phone', 'car']});
+        $ctrl.model[2].push({ items: [], effectAllowed: 'copyMove', id: i, name: i + 1, source: false , index: i, allowedTypes: ['phone', 'car']});
+        $ctrl.model[3].push({ items: [], effectAllowed: 'copyMove', id: i, name: i + 1, source: false , index: i, allowedTypes: ['phone', 'car']});
+        $ctrl.totalRows++;
+        $ctrl.remainingRows = $ctrl.maxRows - $ctrl.totalRows;
+        if ($ctrl.totalRows >= $ctrl.maxRows){
+            $ctrl.canAddRows = false;
+        }
+    }
 
     $ctrl.$onInit = function () {
 
-        debugger;
+        // debugger;
 
         // Generate initial model
         var id = 10;
@@ -48,7 +75,7 @@ function controller() {
         // });
         //debugger;
         //var container1 = { items: [], effectAllowed: 'move', id: 1, name: '', source: false , index: 0};
-        for(var i = 0; i < 10; i++) {
+        for(var i = 0; i < $ctrl.defaultRows; i++) {
             $ctrl.model[0].push({ items: [], effectAllowed: 'copyMove', id: i, name: i + 1, source: false , index: i, allowedTypes: ['phone', 'car']});
             $ctrl.model[1].push({ items: [], effectAllowed: 'copyMove', id: i, name: i + 1, source: false , index: i, allowedTypes: ['phone', 'car']});
             $ctrl.model[2].push({ items: [], effectAllowed: 'copyMove', id: i, name: i + 1, source: false , index: i, allowedTypes: ['phone', 'car']});
@@ -74,7 +101,7 @@ function controller() {
     };
 
     $ctrl.onMoved = function (container, item, $index) {
-        debugger;
+        // debugger;
         if (!container.source) {
             container.items.splice($index, 1);
         }
@@ -83,7 +110,7 @@ function controller() {
     }
 
     $ctrl.onInserted = function (action, list, index, external, type) {
-        debugger;
+        // debugger;
         var newIndex = 0;
         angular.forEach(list.items, (item) => {
             item.index = newIndex;
@@ -95,7 +122,7 @@ function controller() {
 
 
     $ctrl.updateModelJson = function () {
-        debugger;
+        // debugger;
         // console.log('In $ctrl.updateModel. $ctrl.models: ', $ctrl.models);
         $ctrl.modelAsJson = angular.toJson($ctrl.model, true);
     }
@@ -117,17 +144,17 @@ function controller() {
     };
 
     $ctrl.dragoverCallback = function (index, external, type, callback) {
-        debugger;
+        // debugger;
         $ctrl.logListEvent('dragged over', index, external, type);
         // Invoke callback to origin for container types.
         if (type == 'container' && !external) {
             console.log('Container being dragged contains ' + callback() + ' items');
         }
-        return index < 2; // Disallow dropping more than 3 items.
+        return index < $ctrl.taskStep; // Disallow dropping more than 3 items.
     };
 
     $ctrl.dropCallback = function (index, item, external, type) {
-        debugger;
+        // debugger;
         $ctrl.logListEvent('dropped at', index, external, type);
         // Return false here to cancel drop. Return true if you insert the item yourself.
         return item;
