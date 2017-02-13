@@ -24,28 +24,28 @@
                                 dnd-drop="$ctrl.dropCallback(list, index, item, external, type)"
                                 dnd-inserted="$ctrl.onInserted('inserted at', list, index, external, type)"
                                 class="itemlist">
-                                    <li ng-repeat="tool in list.items" 
-                                    dnd-draggable="tool" 
-                                    dnd-type="tool.type" 
-                                    dnd-disable-if="tool.type == 'unknown'" 
-                                    dnd-effect-allowed="{{tool.effectAllowed}}"                                    
+                                    <li ng-repeat="item in list.items" 
+                                    dnd-draggable="item" 
+                                    dnd-type="item.type" 
+                                    dnd-disable-if="item.type == 'unknown'" 
+                                    dnd-effect-allowed="{{item.effectAllowed}}"                                    
                                     dnd-moved="$ctrl.onMoved(list, $index);"
                                         class="itemlist">
                                         <dnd-nodrag>                                            
                                             <div class="row">
                                                 <div class="col-md-1">
-                                                    <div dnd-handle class="handle"><span class="{{tool.icon}}"></span></div>
+                                                    <div dnd-handle class="handle"><span class="{{item.icon}}"></span></div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <div ng-if="tool.index > -1">
-                                                        <input type="text" ng-model="tool.name" class="background-{{tool.type}} form-control input-sm">
+                                                    <div ng-if="item.index > -1">
+                                                        <input type="text" ng-model="item.name" class="background-{{item.type}} form-control input-sm">
                                                     </div>
-                                                    <div ng-if="tool.index < 0">
-                                                        <label class="background-{{tool.type}} input-sm">{{tool.name}}</label>
+                                                    <div ng-if="item.index < 0">
+                                                        <label class="background-{{item.type}} input-sm">{{item.name}}</label>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-1" ng-if="tool.index > -1">
-                                                    <span class="badge index">{{tool.index}}</span>
+                                                <div class="col-md-1" ng-if="item.index > -1">
+                                                    <span class="badge index">{{item.index}}</span>
                                                 </div>                                                
                                             </div>
                                         </dnd-nodrag>

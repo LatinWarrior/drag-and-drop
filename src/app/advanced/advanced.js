@@ -17,6 +17,8 @@ function controller() {
 
     $ctrl.$onInit = function () {
 
+        debugger;
+
         // Generate initial model
         var id = 10;
         // $ctrl.model = [
@@ -47,10 +49,10 @@ function controller() {
         //debugger;
         //var container1 = { items: [], effectAllowed: 'move', id: 1, name: '', source: false , index: 0};
         for(var i = 0; i < 10; i++) {
-            $ctrl.model[0].push({ items: [], effectAllowed: 'move', id: i, name: i + 1, source: false , index: i});
-            $ctrl.model[1].push({ items: [], effectAllowed: 'move', id: i, name: i + 1, source: false , index: i});
-            $ctrl.model[2].push({ items: [], effectAllowed: 'move', id: i, name: i + 1, source: false , index: i});
-            $ctrl.model[3].push({ items: [], effectAllowed: 'move', id: i, name: i + 1, source: false , index: i});
+            $ctrl.model[0].push({ items: [], effectAllowed: 'move', id: i, name: i + 1, source: false , index: i, allowedTypes: ['phone', 'car'],});
+            $ctrl.model[1].push({ items: [], effectAllowed: 'move', id: i, name: i + 1, source: false , index: i, allowedTypes: ['phone', 'car'],});
+            $ctrl.model[2].push({ items: [], effectAllowed: 'move', id: i, name: i + 1, source: false , index: i, allowedTypes: ['phone', 'car'],});
+            $ctrl.model[3].push({ items: [], effectAllowed: 'move', id: i, name: i + 1, source: false , index: i, allowedTypes: ['phone', 'car'],});
         }
         //var container12 = { items: [], effectAllowed: 'move', id: 12, name: '', source: false , index: 0};
         // $ctrl.model[0].push(container1);
@@ -72,7 +74,7 @@ function controller() {
     };
 
     $ctrl.onMoved = function (container, item, $index) {
-        //debugger;
+        debugger;
         if (!container.source) {
             container.items.splice($index, 1);
         }
@@ -81,7 +83,7 @@ function controller() {
     }
 
     $ctrl.onInserted = function (action, list, index, external, type) {
-        // debugger;
+        debugger;
         var newIndex = 0;
         angular.forEach(list.items, (item) => {
             item.index = newIndex;
@@ -93,6 +95,7 @@ function controller() {
 
 
     $ctrl.updateModelJson = function () {
+        debugger;
         // console.log('In $ctrl.updateModel. $ctrl.models: ', $ctrl.models);
         $ctrl.modelAsJson = angular.toJson($ctrl.model, true);
     }
@@ -114,6 +117,7 @@ function controller() {
     };
 
     $ctrl.dragoverCallback = function (index, external, type, callback) {
+        debugger;
         $ctrl.logListEvent('dragged over', index, external, type);
         // Invoke callback to origin for container types.
         if (type == 'container' && !external) {
@@ -123,6 +127,7 @@ function controller() {
     };
 
     $ctrl.dropCallback = function (index, item, external, type) {
+        debugger;
         $ctrl.logListEvent('dropped at', index, external, type);
         // Return false here to cancel drop. Return true if you insert the item yourself.
         return item;
