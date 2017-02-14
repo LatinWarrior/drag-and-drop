@@ -20,7 +20,7 @@ function controller() {
         taskStep: [1, 2, 3, 4, 5]
     }
     $ctrl.showModel = false;
-    $ctrl.toggleModel = function(){
+    $ctrl.toggleModel = function () {
         $ctrl.showModel = !$ctrl.showModel;
     }
     $ctrl.totalRows = $ctrl.defaultRows;
@@ -28,16 +28,15 @@ function controller() {
     $ctrl.remainingRows = $ctrl.maxRows - $ctrl.totalRows;
     $ctrl.canAddRows = true;
 
-    $ctrl.addRow = function() {
+    $ctrl.addRow = function () {
         console.log('$ctrl.model[0].length: ', $ctrl.model[0].length);
         var i = $ctrl.model[0].length;
-        $ctrl.model[0].push({ items: [], effectAllowed: 'copyMove', id: i, name: i + 1, source: false , index: i, allowedTypes: ['phone', 'car']});
-        $ctrl.model[1].push({ items: [], effectAllowed: 'copyMove', id: i, name: i + 1, source: false , index: i, allowedTypes: ['phone', 'car']});
-        $ctrl.model[2].push({ items: [], effectAllowed: 'copyMove', id: i, name: i + 1, source: false , index: i, allowedTypes: ['phone', 'car']});
-        $ctrl.model[3].push({ items: [], effectAllowed: 'copyMove', id: i, name: i + 1, source: false , index: i, allowedTypes: ['phone', 'car']});
+        for (var j = 0; j < 4; j++) {
+                $ctrl.model[j].push({ items: [], effectAllowed: 'copyMove', id: i, name: i + 1, source: false, index: i, allowedTypes: ['phone', 'car'] });
+            }        
         $ctrl.totalRows++;
         $ctrl.remainingRows = $ctrl.maxRows - $ctrl.totalRows;
-        if ($ctrl.totalRows >= $ctrl.maxRows){
+        if ($ctrl.totalRows >= $ctrl.maxRows) {
             $ctrl.canAddRows = false;
         }
     }
@@ -56,7 +55,7 @@ function controller() {
         //     [{ name: 'PALETTE', index: -1  }]
         // ];
 
-        $ctrl.model = [[],[],[],[],[]];
+        $ctrl.model = [[], [], [], [], []];
 
         // angular.forEach(['all', 'move', 'copy', 'link', 'copyLink', 'copyMove'], function (effect, i) {
         //     var container = { items: [], effectAllowed: effect };
@@ -75,11 +74,10 @@ function controller() {
         // });
         //debugger;
         //var container1 = { items: [], effectAllowed: 'move', id: 1, name: '', source: false , index: 0};
-        for(var i = 0; i < $ctrl.defaultRows; i++) {
-            $ctrl.model[0].push({ items: [], effectAllowed: 'copyMove', id: i, name: i + 1, source: false , index: i, allowedTypes: ['phone', 'car']});
-            $ctrl.model[1].push({ items: [], effectAllowed: 'copyMove', id: i, name: i + 1, source: false , index: i, allowedTypes: ['phone', 'car']});
-            $ctrl.model[2].push({ items: [], effectAllowed: 'copyMove', id: i, name: i + 1, source: false , index: i, allowedTypes: ['phone', 'car']});
-            $ctrl.model[3].push({ items: [], effectAllowed: 'copyMove', id: i, name: i + 1, source: false , index: i, allowedTypes: ['phone', 'car']});
+        for (var i = 0; i < $ctrl.defaultRows; i++) {
+            for (var j = 0; j < 4; j++) {
+                $ctrl.model[j].push({ items: [], effectAllowed: 'copyMove', id: i, name: i + 1, source: false, index: i, allowedTypes: ['phone', 'car'] });
+            }           
         }
         //var container12 = { items: [], effectAllowed: 'move', id: 12, name: '', source: false , index: 0};
         // $ctrl.model[0].push(container1);
@@ -93,7 +91,7 @@ function controller() {
         var itemPhone = { id: 1, name: 'phone', label: 'phone', type: 'phone', index: -1, icon: 'fa fa-phone', effectAllowed: 'copy', source: true, allowedTypes: [] };
         var itemCar = { id: 2, name: 'car', label: 'car', type: 'car', index: -1, icon: 'fa fa-car', effectAllowed: 'copy', source: true, allowedTypes: [] };
         var container5 = { items: [itemPhone, itemCar], effectAllowed: 'copy', id: 0, name: 'PALETTE', source: true, index: -1 };
-        $ctrl.model[4].push(container5);        
+        $ctrl.model[4].push(container5);
 
         $ctrl.modelAsJson = angular.toJson($ctrl.model, true);
 
